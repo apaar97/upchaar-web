@@ -15,8 +15,8 @@ How to test at local server
 
         Now activate your environment by :
 
-            myenv\Scripts\activate (Windows)
-            source myenv/bin/activate (Linux / Mac)
+            project_env\Scripts\activate (Windows)
+            source project_env/bin/activate (Linux / Mac)
 
       This creates and activates your virtual environment
 
