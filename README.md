@@ -1,4 +1,4 @@
-### DRF TEMPLATE
+### UPCHAAR website
 
 Dependencies
 
@@ -51,5 +51,6 @@ How to test at local server
 
             python manage.py runserver
 
-      This starts the development server at localhost / 127.0.0.1:8000. Use your browser to view the local site
-        Access admin interface at 127.0.0.1:8000/admin by logging in with the created credentials
+      This starts the development server at 127.0.0.1:8000 (Windows) or localhost:8000 (linux/mac)
+      Use your browser to view the local site
+      Access admin interface at 127.0.0.1:8000/admin by logging in with the created credentials
