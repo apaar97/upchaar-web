@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+        <Title>
+            {% block custom_title %}
+            {% endblock %}
+        </Title>
+        <!--Materialize Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Materialize CSS-->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.css' %}" media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" media="screen,projection"/>
+
+    </head>
+
+    <body>
+
+        <header>
+            <!--Fixed Navbar-->
+            <div class="navbar-fixed">
+                <nav class="orange top-nav">
+                    <div class="nav-wrapper container">
+                        <a href="{% url 'index' %}" class="brand-logo white-text">Nav</a>
+                        <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                            <i class="material-icons white-text">menu</i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            <!--Mobile Collabsible SideNav-->
+            <ul class="sidenav" id="mobile-nav">
+                <li><div class="divider"></div></li>
+            </ul>
+
+            {% block custom_header %}
+            {% endblock %}
+
+        </header>
+
+        <main>
+            <!--Alert Messages-->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">
+                        <span class="closebtn">&times;</span>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% block main %}
+            {% endblock %}
+        </main>
+
+        <!--Sticky Footer-->
+        <footer class="page-footer orange darken-1" style="margin-top:90px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    ©2018 Upchaar
+                </div>
+            </div>
+        </footer>
+
+        <!--Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/init.js' %}"></script>
+
+        {% block custom_script %}
+        {% endblock %}
+
+    </body>
+
+</html>
