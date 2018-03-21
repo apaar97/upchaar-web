@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_401_UNAUTHORIZED, HTTP_200_OK
 from rest_framework.authtoken.models import Token
 from .models import User
+from django.shortcuts import render
 
 
 @api_view(['POST'])
@@ -56,6 +57,9 @@ def get_auth_token(request):
         return Response({'error': 'Invalid Request'}, status=HTTP_401_UNAUTHORIZED)
 
     return Response({'id': id, 'token': auth_token.key}, status=HTTP_200_OK)
+
+def options(request):
+    return render(request, 'options.html')
 
 #
 # class UserViewSet(viewsets.ModelViewSet):
