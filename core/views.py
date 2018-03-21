@@ -6,10 +6,15 @@ from rest_framework.decorators import api_view, detail_route, list_route
 from rest_framework.response import Response
 from rest_framework.status import HTTP_401_UNAUTHORIZED, HTTP_200_OK
 from rest_framework.authtoken.models import Token
+<<<<<<< HEAD
+from .models import User
+from django.shortcuts import render
+=======
 from .models import (Role, Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule,
                      Appointment)
 from .serializers import *
 from .forms import UserSignUpForm
+>>>>>>> d3c8968ff51d739cc7e2af936c528cbc708a58d9
 
 
 @api_view(['POST'])
@@ -61,6 +66,15 @@ def get_auth_token(request):
 
     return Response({'id': id, 'token': auth_token.key}, status=HTTP_200_OK)
 
+<<<<<<< HEAD
+def options(request):
+    return render(request, 'options.html')
+
+#
+# class UserViewSet(viewsets.ModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+=======
 
 def signup(request):
     if request.method == 'POST':
@@ -132,3 +146,4 @@ class DayScheduleViewSet(viewsets.ModelViewSet):
 class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+>>>>>>> d3c8968ff51d739cc7e2af936c528cbc708a58d9
