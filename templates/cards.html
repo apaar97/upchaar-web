@@ -1,0 +1,117 @@
+<<<<<<< HEAD
+{% extends 'base.html' %}
+
+{% block custom_title %}
+Upchaar-List of Hospitals
+{% endblock %}
+
+{% block content %}
+
+
+{%block style_card_swap %}
+<style>
+    .card-container {
+        -webkit-perspective: 500px;
+                perspective: 500px;
+    }
+
+    .card-container:hover .card{
+        -webkit-transform: rotateY( 180deg );
+                transform: rotateY( 180deg );
+    }
+
+    .card {
+        -webkit-transition: -webkit-transform 0.7s;
+                transition: transform 0.7s;
+        -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+    }
+
+    .front, .back {
+        -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+    }
+
+    .back {
+        -webkit-transform: rotateY( 180deg );
+                transform: rotateY( 180deg );
+    }
+
+    /*Custom Styles*/
+    .cards-container{
+       display: -webkit-flex;
+       display: -webkit-box;
+       display: -ms-flexbox;
+       display: flex;
+       -webkit-flex-direction: row;
+       -webkit-box-orient: horizontal;
+       -webkit-box-direction: normal;
+           -ms-flex-direction: row;
+               flex-direction: row;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+    }
+
+    .card {
+      width: 150px;
+        height: 150px;
+      margin: 10px;
+    }
+
+    .front, .back {
+      box-shadow: 0 1px 6px 0;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+    }
+
+    img {
+      display: block;
+    }
+
+
+</style>
+{% endblock %}
+
+<!-- Thanks to adorable.io for the great avatars ! -->
+
+{% block card_swap %}
+<div>
+<h1 class="container red">Hospital Name</h1>
+<div class="cards-container">
+    <!--   First Card -->
+    {% for doc in hospitals.listOfDocs %}
+
+    <div class="card-container">
+        <div class="card">
+            <div class="front">
+                <img src="https://api.adorable.io/avatars/150/1">
+            </div>
+            <div class="back">
+                <img src="https://api.adorable.io/avatars/150/2">
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+    </div>
+
+{% endblock %}
+
+{% endblock %}
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+>>>>>>> d3c8968ff51d739cc7e2af936c528cbc708a58d9

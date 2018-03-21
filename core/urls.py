@@ -4,8 +4,18 @@ from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
 
 router = routers.DefaultRouter()
+router.register(r'roles', views.RoleViewSet)
+router.register(r'address', views.AddressViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'contacts', views.ContactViewSet)
+router.register(r'doctors', views.DoctorViewSet)
+router.register(r'patients', views.PatientViewSet)
+router.register(r'hospitals', views.HospitalViewSet)
+router.register(r'dayschedule', views.DayScheduleViewSet)
+router.register(r'appointment', views.AppointmentViewSet)
 
 urlpatterns = [
+    path('signup/', views.signup),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/docs/', include_docs_urls(title='UPCHAAR API', public=False)),

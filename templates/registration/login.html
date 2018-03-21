@@ -13,8 +13,6 @@
                     <form class="col s12" method="post" action="/login/?next={{next}}">
                         {% csrf_token %}
                         {% include 'form_snippet.html' with form=form %}
-                        <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
-                        <!--<div class="g-recaptcha" data-sitekey="6LfaIUAUAAAAAN0RuaBLlZpuCVHX7mtWeVDobCCa"></div>-->
                         <br>
                         <div class="center-align">
                             <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
@@ -24,8 +22,6 @@
                     <form class="col s12" method="post" action="{% url 'login'  %}">
                         {% csrf_token %}
                         {% include 'form_snippet.html' with form=form %}
-                        <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
-                        <!--<div class="g-recaptcha" data-sitekey="6LfaIUAUAAAAAN0RuaBLlZpuCVHX7mtWeVDobCCa"></div>-->
                         <br>
                         <div class="center-align">
                             <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
@@ -33,9 +29,7 @@
                     </form>
                 {% endif %}
             </div>
-            <div class="section">
-                <h6>New User? <a href="{% url 'signup_user' %}">Signup</a></h6>
-            </div>
+
         </div>
     </div>
 

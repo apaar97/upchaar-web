@@ -1,0 +1,17 @@
+{% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+        <p style="color:red;" class="error-message">{{ error|escape }}</p>
+    {% endfor %}
+{% endif %}
+
+{% for field in form %}
+
+    <div class="row">
+        <div class="input-field col s12">
+            {% include 'form_field_snippet.html' with field=field %}
+        </div>
+    </div>
+
+{% endfor %}
+
+
