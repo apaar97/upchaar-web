@@ -1,11 +1,13 @@
 from django.conf import settings
 from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect, reverse
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, detail_route, list_route
 from rest_framework.response import Response
 from rest_framework.status import HTTP_401_UNAUTHORIZED, HTTP_200_OK
 from rest_framework.authtoken.models import Token
 from .models import User
+from .forms import UserSignUpForm
 
 
 @api_view(['POST'])
@@ -57,7 +59,32 @@ def get_auth_token(request):
 
     return Response({'id': id, 'token': auth_token.key}, status=HTTP_200_OK)
 
-#
-# class UserViewSet(viewsets.ModelViewSet):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
+
+def signup(request):
+    if request.method == 'POST':
+        userform = UserSignUpForm(request.POST)
+        if userform.is_valid():
+            user = userform.save()
+            username = userform.cleaned_data.get('username')
+            raw_password = userform.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        userform = UserSignUpForm()
+    return render(request=request, template_name='signup/signup_user.html', context={'userform': userform})
+
+
+def signup_patient(request):
+
+    return render(request=request, template_name='signup/signup.html')
+
+
+def signup_doctor(request):
+
+    return render(request=request, template_name='signup/signup.html')
+
+
+def signup_hospital(request):
+
+    return render(request=request, template_name='signup/signup.html')

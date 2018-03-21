@@ -6,6 +6,7 @@ from rest_framework.documentation import include_docs_urls
 router = routers.DefaultRouter()
 
 urlpatterns = [
+    path('signup/', views.signup),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/docs/', include_docs_urls(title='UPCHAAR API', public=False)),
