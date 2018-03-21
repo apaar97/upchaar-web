@@ -12,8 +12,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        # fields = ('url', 'username', 'email', 'first_name', 'last_name', 'password')
-        fields = '__all__'
+        fields = ('url', 'username', 'email', 'first_name', 'last_name', 'password', 'gender', 'date_of_birth', 'roles',
+                  'address',)
         write_only_fields = ('password',)
         read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined',)
 
@@ -22,3 +22,61 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         return user
 
 
+class RoleSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Role
+        fields = '__all__'
+
+
+class AddressSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Address
+        fields = '__all__'
+
+
+class ContactSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
+
+class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Department
+        fields = '__all__'
+
+
+class EducationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Education
+        fields = '__all__'
+
+
+class DoctorSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Doctor
+        fields = '__all__'
+
+
+class PatientSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Patient
+        fields = '__all__'
+
+
+class HospitalSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Hospital
+        fields = '__all__'
+
+
+class DayScheduleSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = DaySchedule
+        fields = '__all__'
+
+
+class AppointmentSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Appointment
+        fields = '__all__'
