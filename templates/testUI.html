@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block custom_style %}
+
+{% endblock %}
 
 {% block main %}
 
@@ -22,22 +27,18 @@
                 </div>
             </div>
         </div>
-        <ul class="collapsible">
-            <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-                <div class="collapsible-body">
-                    <span>Date Picker</span>
-                    <input type="text" class="datepicker">
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="id_date_of_birth">Date of Birth</label>
+                    <input name="dob" id="id_dob" type="text" id="id_date_of_birth" class="datepicker">
                 </div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-                <div class="collapsible-body">
-                    <span>Time Picker</span>
-                    <input type="text" class="timepicker">
-                </div>
-            </li>
-        </ul>
+            </div>
+            <div class="center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+            </div>
+        </form>
     </div>
 
 {% endblock %}
@@ -47,7 +48,9 @@
         $(document).ready(function(){
             $('.collapsible').collapsible();
             $('.timepicker').timepicker();
-            $('.datepicker').datepicker();
+            $('.datepicker').datepicker({
+                format:'yyyy-mm-dd'
+            });
         });
     </script>
 {% endblock %}

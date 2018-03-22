@@ -15,6 +15,7 @@ router.register(r'dayschedule', views.DayScheduleViewSet)
 router.register(r'appointment', views.AppointmentViewSet)
 
 urlpatterns = [
+    path('testUI/', views.testUI, name='testUI'),
     path('signup/', views.signup, name='signup'),
     path('signup/patient', views.signup_patient, name='signup_patient'),
     path('signup/doctor', views.signup_doctor, name='signup_doctor'),
