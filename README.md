@@ -22,7 +22,7 @@ How to test at local server
 
    * Clone the repository
 
-          git clone https://github.com/apaar97/Upchaar.git
+          git clone https://github.com/apaar97/UpchaarWeb.git
 
    * Install python packages
 
