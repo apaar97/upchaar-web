@@ -28,7 +28,7 @@ How to test at local server
 
         In your commandline, change directory to the project root :
 
-            cd .\Upchaar\
+            cd .\UpchaarWeb\
 
         Now install the requirements :
 
