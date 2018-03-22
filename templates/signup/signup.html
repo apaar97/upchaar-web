@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block main %}
+
+    <div class="container">
+        <div class="section">
+            <h5 class="center-align grey-text text-darken-1">Signup</h5>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+            <h5 class="center-align">Register as</h5>
+            <br>
+            <div class="row center-align">
+                <a class="waves-effect waves-light btn" href="{% url 'signup_patient' %}">Patient</a>
+                <a class="waves-effect waves-light btn" href="{% url 'signup_doctor' %}">Doctor</a>
+                <a class="waves-effect waves-light btn" href="{% url 'signup_hospital' %}">Hospital</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_script %}
+    <script>
+        $(document).ready(function(){
+
+        });
+    </script>
+{% endblock %}

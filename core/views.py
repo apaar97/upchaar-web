@@ -64,35 +64,32 @@ def get_auth_token(request):
     return Response({'id': id, 'token': auth_token.key}, status=HTTP_200_OK)
 
 
-def options(request):
-    return render(request, 'options.html')
-
-
 def signup(request):
-    if request.method == 'POST':
-        userform = UserSignUpForm(request.POST)
-        if userform.is_valid():
-            user = userform.save()
-            username = userform.cleaned_data.get('username')
-            raw_password = userform.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('index')
-    else:
-        userform = UserSignUpForm()
-    return render(request=request, template_name='signup/signup_user.html', context={'userform': userform})
+    # if request.method == 'POST':
+    #     userform = UserSignUpForm(request.POST)
+    #     if userform.is_valid():
+    #         user = userform.save()
+    #         username = userform.cleaned_data.get('username')
+    #         raw_password = userform.cleaned_data.get('password1')
+    #         user = authenticate(username=username, password=raw_password)
+    #         login(request, user)
+    #         return redirect('index')
+    # else:
+    #     userform = UserSignUpForm()
+    # return render(request=request, template_name='signup/signup_user.html', context={'userform': userform})
+    return render(request=request, template_name='signup/signup.html')
 
 
 def signup_patient(request):
-    return render(request=request, template_name='signup/signup.html')
+    return render(request=request, template_name='signup/signup_patient.html')
 
 
 def signup_doctor(request):
-    return render(request=request, template_name='signup/signup.html')
+    return render(request=request, template_name='signup/signup_patient.html')
 
 
 def signup_hospital(request):
-    return render(request=request, template_name='signup/signup.html')
+    return render(request=request, template_name='signup/signup_patient.html')
 
 
 # class RoleViewSet(viewsets.ModelViewSet):

@@ -7,8 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
         <Title>
-            {% block custom_title %}
-            {% endblock %}
+            Upchaar : Healthcare Appointment System
         </Title>
         <!--Materialize Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -32,6 +31,34 @@
                         <a href="#" data-target="mobile-nav" class="sidenav-trigger">
                             <i class="material-icons white-text">menu</i>
                         </a>
+                        <ul class="right hide-on-med-and-down">
+                            {% if user.is_authenticated %}
+                                <li style="padding-right:10px;">Signed in as
+                                    <span class="white-text"> {{ user }} </span>
+                                </li>
+                                <li><a href="#" class="white-text">Dashboard</a></li>
+                                <li><a href="#" class="dropdown-trigger white-text" data-target='account-menu'>
+                                        <i class="material-icons right">account_circle</i>Account
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li style="padding-right:10px;">Welcome Guest</li>
+                                <li><a href="{% url 'login' %}" class="white-text">Login</a></li>
+                                <li><a href="{% url 'signup' %}" class="white-text">Signup</a></li>
+                            {% endif %}
+                        </ul>
+
+                        <!--Account Menu List-->
+                        <ul id='account-menu' class='dropdown-content'>
+                            {% if user.is_authenticated %}
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% else %}
+                                <li>Welcome </li>
+                                <li><a href="{% url 'login' %}">Login</a></li>
+                            {% endif %}
+                        </ul>
                     </div>
                 </nav>
             </div>

@@ -52,15 +52,24 @@ class User(AbstractUser):
     date_of_birth = models.DateField(null=True, blank=True)
     address = models.OneToOneField(Address, on_delete=models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return self.username
+
 
 class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='contacts')
     contact_no = models.IntegerField()
 
+    def __str__(self):
+        return self.contact_no
+
 
 class Department(models.Model):
     department_name = models.CharField(max_length=50)
     department_desc = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.department_name
 
 
 class Education(models.Model):
@@ -73,15 +82,24 @@ class Doctor(models.Model):
     education = models.OneToOneField(Education, on_delete=models.CASCADE)
     time_slot = models.DurationField()
 
+    def __str__(self):
+        return self.user.get_full_name()
+
 
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     patient_desc = models.CharField(max_length=500)
 
+    def __str__(self):
+        return self.user.get_full_name()
+
 
 class Hospital(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     hospital_desc = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.user.get_full_name()
 
 
 class DaySchedule(models.Model):
