@@ -9,8 +9,7 @@ from rest_framework.authtoken.models import Token
 
 from .models import User
 from django.shortcuts import render
-from .models import (Role, Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule,
-                     Appointment)
+from .models import Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule, Appointment
 from .serializers import *
 from .forms import UserSignUpForm
 
@@ -96,9 +95,9 @@ def signup_hospital(request):
     return render(request=request, template_name='signup/signup.html')
 
 
-class RoleViewSet(viewsets.ModelViewSet):
-    queryset = Role.objects.all()
-    serializer_class = RoleSerializer
+# class RoleViewSet(viewsets.ModelViewSet):
+#     queryset = Role.objects.all()
+#     serializer_class = RoleSerializer
 
 
 class AddressViewSet(viewsets.ModelViewSet):

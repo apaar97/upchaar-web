@@ -3,21 +3,21 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
 
-class Role(models.Model):
-    PATIENT = 1
-    DOCTOR = 2
-    HOSPITAL = 3
-    ADMIN = 4
-    ROLE_CHOICES = (
-        (PATIENT, 'Patient'),
-        (DOCTOR, 'Doctor'),
-        (HOSPITAL, 'Hospital'),
-        (ADMIN, 'Admin'),
-    )
-    id = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, primary_key=True)
-
-    def __str__(self):
-        return self.get_id_display()
+# class Role(models.Model):
+#     PATIENT = 1
+#     DOCTOR = 2
+#     HOSPITAL = 3
+#     ADMIN = 4
+#     ROLE_CHOICES = (
+#         (PATIENT, 'Patient'),
+#         (DOCTOR, 'Doctor'),
+#         (HOSPITAL, 'Hospital'),
+#         (ADMIN, 'Admin'),
+#     )
+#     id = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, primary_key=True)
+#
+#     def __str__(self):
+#         return self.get_id_display()
 
 
 class Address(models.Model):
@@ -32,12 +32,22 @@ class Address(models.Model):
 
 
 class User(AbstractUser):
+    PATIENT = 1
+    DOCTOR = 2
+    HOSPITAL = 3
+    ADMIN = 4
+    ROLE_CHOICES = (
+        (PATIENT, 'Patient'),
+        (DOCTOR, 'Doctor'),
+        (HOSPITAL, 'Hospital'),
+        (ADMIN, 'Admin'),
+    )
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
         ('O', 'Other'),
     )
-    roles = models.ManyToManyField(Role, related_name='roles')
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     address = models.OneToOneField(Address, on_delete=models.CASCADE, null=True, blank=True)

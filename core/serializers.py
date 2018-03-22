@@ -1,8 +1,7 @@
 from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from .models import (Role, Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule,
-                     Appointment)
+from .models import Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule, Appointment
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -22,10 +21,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         return user
 
 
-class RoleSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Role
-        fields = '__all__'
+# class RoleSerializer(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model = Role
+#         fields = '__all__'
 
 
 class AddressSerializer(serializers.HyperlinkedModelSerializer):

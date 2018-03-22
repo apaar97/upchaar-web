@@ -1,6 +1,6 @@
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import user_passes_test
-from .models import Role
+from .models import User
 
 
 def patient_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
@@ -9,7 +9,7 @@ def patient_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, log
     redirects to the log-in page if necessary.
     '''
     actual_decorator = user_passes_test(
-        lambda u: u.is_active and Role.PATIENT in u.roles.all(),
+        lambda u: u.is_active and u.role == User.PATIENT,
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
@@ -24,7 +24,7 @@ def doctor_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, logi
     redirects to the log-in page if necessary.
     '''
     actual_decorator = user_passes_test(
-        lambda u: u.is_active and Role.DOCTOR in u.roles.all(),
+        lambda u: u.is_active and u.role == User.DOCTOR,
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
@@ -39,7 +39,7 @@ def hospital_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, lo
     redirects to the log-in page if necessary.
     '''
     actual_decorator = user_passes_test(
-        lambda u: u.is_active and Role.HOSPITAL in u.roles.all(),
+        lambda u: u.is_active and u.role == User.HOSPITAL,
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
