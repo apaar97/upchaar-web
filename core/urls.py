@@ -22,5 +22,7 @@ urlpatterns = [
     path('api/login/', views.api_login, name='api_login'),
     path('api/logout/', views.api_logout, name='api_logout'),
     path('api/auth-token/', views.get_auth_token, name='api_auth_token'),
-    path('options/',views.options, name='options')
+    path('options/',views.options, name='options'),
+    path('doc_schedule/', views.changeCalendar, name='doc_schedule'),
+
 ]
