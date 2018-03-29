@@ -6,17 +6,11 @@ from rest_framework.decorators import api_view, detail_route, list_route
 from rest_framework.response import Response
 from rest_framework.status import HTTP_401_UNAUTHORIZED, HTTP_200_OK
 from rest_framework.authtoken.models import Token
-from .models import User
 from django.shortcuts import render
-
 from .models import (Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule,
                      Appointment)
 from .serializers import *
 from .forms import UserSignUpForm
-
-from .models import User
-from django.shortcuts import render
-from .models import Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule, Appointment
 from .serializers import *
 from .forms import UserSignUpForm, PatientSignupForm
 
@@ -72,16 +66,6 @@ def get_auth_token(request):
     return Response({'id': id, 'token': auth_token.key}, status=HTTP_200_OK)
 
 
-def options(request):
-    return render(request, 'options.html')
-
-#
-# class UserViewSet(viewsets.ModelViewSet):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-
-
-
 def signup(request):
     return render(request=request, template_name='signup/signup.html')
 
@@ -96,7 +80,8 @@ def signup_patient(request):
         if userform.is_valid() and patientform.is_valid():
             user = userform.save()
             user.role = User.PATIENT
-            user.role = request.POST.get('date_of_birth')
+            user.date_of_birth = request.POST.get('date_of_birth')
+            user.save()
             patient = patientform.save()
             patient.user = user
             patient.save()
@@ -120,16 +105,8 @@ def signup_hospital(request):
     return render(request=request, template_name='signup/signup_patient.html')
 
 
-def changeCalendar(request):
-    Doc_data=DaySchedule.objects.filter(doctor=User.objects.get(id=id))
-    return render(request, 'calender.html',{'doctor_data': Doc_data})
-
-#--change_madeclass RoleViewSet(viewsets.ModelViewSet):
-    #--change_made queryset = Role.objects.all()
-#--change_made serializer_class = RoleSerializer
-# class RoleViewSet(viewsets.ModelViewSet):
-#     queryset = Role.objects.all()
-#     serializer_class = RoleSerializer
+def calender(request):
+    return render(request=request, template_name='calender.html')
 
 
 class AddressViewSet(viewsets.ModelViewSet):

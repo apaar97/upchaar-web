@@ -7,7 +7,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 
-
         <Title>
             Upchaar : Healthcare Appointment System
         </Title>
@@ -16,10 +15,12 @@
         <!--Materialize CSS-->
         <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.css' %}" media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" media="screen,projection"/>
-        {% block head_block %}
-            {% endblock %}
-
-
+        <!--Full Calender Style-->
+        <link type="text/css" rel='stylesheet' href="{% static 'fullcalendar/fullcalendar.css' %}" />
+        <!--Full Calender Scripts-->
+        <script type="text/javascript" src="{% static 'fullcalendar/lib/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'fullcalendar/lib/moment.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'fullcalendar/fullcalendar.js' %}"></script>
         {% block custom_style %}
         {% endblock %}
 
@@ -91,8 +92,7 @@
             {% block main %}
             {% endblock %}
         </main>
-        {% block content %}
-        {% endblock %}
+
         <!--Sticky Footer-->
         <footer class="page-footer orange darken-1" style="margin-top:90px;">
             <div class="container">
@@ -112,12 +112,7 @@
         <!--Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/init.js' %}"></script>
-         <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
-
-
-
         {% block custom_script %}
         {% endblock %}
 
