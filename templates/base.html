@@ -6,6 +6,8 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+
         <Title>
             Upchaar : Healthcare Appointment System
         </Title>
@@ -14,6 +16,9 @@
         <!--Materialize CSS-->
         <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.css' %}" media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" media="screen,projection"/>
+        {% block head_block %}
+            {% endblock %}
+
 
         {% block custom_style %}
         {% endblock %}
@@ -109,6 +114,9 @@
         <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/init.js' %}"></script>
+         <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
+
+
 
         {% block custom_script %}
         {% endblock %}

@@ -27,6 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'upchaar.pythonanywhere.com']
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'anchal0997@gmail.com'
+EMAIL_HOST_PASSWORD = 'anchal@97'
+SENDGRID_API_KEY='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'
+
+
+
 
 # Application definition
 
