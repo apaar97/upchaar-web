@@ -58,9 +58,10 @@ class DoctorSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class PatientSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     class Meta:
         model = Patient
-        fields = '__all__'
+        fields = ('url', 'user', 'patient_desc',)
 
 
 class HospitalSerializer(serializers.HyperlinkedModelSerializer):
