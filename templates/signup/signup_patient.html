@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="container">
+        <div class="section">
+            <h5 class="center-align grey-text text-darken-1">Signup as Patient</h5>
+        </div>
+        <div class="divider"></div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <form class="col s12" method="post" action="">
+                    {% csrf_token %}
+                    {% include 'form_snippet.html' with form=userform %}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="id_date_of_birth">Date of Birth</label>
+                            <input type="text" id="id_date_of_birth" name="date_of_birth" class="datepicker">
+                        </div>
+                    </div>
+                    {% include 'form_snippet.html' with form=patientform %}
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Signup</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="section">
+            <h6>Already a user? <a href="{% url 'login' %}">Login</a></h6>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_script %}
+    <script>
+        $(document).ready(function(){
+            $('.datepicker').datepicker();
+            $('select').formSelect();
+
+        });
+    </script>
+{% endblock %}

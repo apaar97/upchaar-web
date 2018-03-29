@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% block custom_title %}
-    Upchaar
-{% endblock %}
-
 {% block custom_header %}
 
 {% endblock %}
@@ -11,22 +7,21 @@
 {% block main %}
 
     <div class="container">
-        <h5 align="center">Index</h5>
-        <div class="row">
-            <div class="col s12">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis hendrerit convallis. Suspendisse felis sem, aliquam et blandit ut, ullamcorper non est. Curabitur sed nibh quis dolor mollis accumsan. Etiam fringilla velit in orci semper pulvinar. Nullam odio mauris, suscipit id laoreet quis, iaculis at urna. Nulla congue ante et purus consequat luctus. Quisque porta aliquet lectus.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis hendrerit convallis. Suspendisse felis sem, aliquam et blandit ut, ullamcorper non est. Curabitur sed nibh quis dolor mollis accumsan. Etiam fringilla velit in orci semper pulvinar. Nullam odio mauris, suscipit id laoreet quis, iaculis at urna. Nulla congue ante et purus consequat luctus. Quisque porta aliquet lectus.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis hendrerit convallis. Suspendisse felis sem, aliquam et blandit ut, ullamcorper non est. Curabitur sed nibh quis dolor mollis accumsan. Etiam fringilla velit in orci semper pulvinar. Nullam odio mauris, suscipit id laoreet quis, iaculis at urna. Nulla congue ante et purus consequat luctus. Quisque porta aliquet lectus.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis hendrerit convallis. Suspendisse felis sem, aliquam et blandit ut, ullamcorper non est. Curabitur sed nibh quis dolor mollis accumsan. Etiam fringilla velit in orci semper pulvinar. Nullam odio mauris, suscipit id laoreet quis, iaculis at urna. Nulla congue ante et purus consequat luctus. Quisque porta aliquet lectus.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis hendrerit convallis. Suspendisse felis sem, aliquam et blandit ut, ullamcorper non est. Curabitur sed nibh quis dolor mollis accumsan. Etiam fringilla velit in orci semper pulvinar. Nullam odio mauris, suscipit id laoreet quis, iaculis at urna. Nulla congue ante et purus consequat luctus. Quisque porta aliquet lectus.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis hendrerit convallis. Suspendisse felis sem, aliquam et blandit ut, ullamcorper non est. Curabitur sed nibh quis dolor mollis accumsan. Etiam fringilla velit in orci semper pulvinar. Nullam odio mauris, suscipit id laoreet quis, iaculis at urna. Nulla congue ante et purus consequat luctus. Quisque porta aliquet lectus.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis hendrerit convallis. Suspendisse felis sem, aliquam et blandit ut, ullamcorper non est. Curabitur sed nibh quis dolor mollis accumsan. Etiam fringilla velit in orci semper pulvinar. Nullam odio mauris, suscipit id laoreet quis, iaculis at urna. Nulla congue ante et purus consequat luctus. Quisque porta aliquet lectus.</p>
-            </div>
-        </div>
+        <h4>Index</h4>
+        <br>
+        <a href="{% url 'testUI' %}">Test UI</a>
+        <br>
+        {{ request.user }}
+        <br>
+        {{ request.user.date_of_birth }}
     </div>
 
 {% endblock %}
 
 {% block custom_script %}
+    <script>
+        $(document).ready(function(){
 
+        });
+    </script>
 {% endblock %}

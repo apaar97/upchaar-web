@@ -9,10 +9,16 @@ from rest_framework.authtoken.models import Token
 from .models import User
 from django.shortcuts import render
 
-from .models import (Role, Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule,
+from .models import (Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule,
                      Appointment)
 from .serializers import *
 from .forms import UserSignUpForm
+
+from .models import User
+from django.shortcuts import render
+from .models import Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule, Appointment
+from .serializers import *
+from .forms import UserSignUpForm, PatientSignupForm
 
 
 @api_view(['POST'])
@@ -76,39 +82,53 @@ def options(request):
 
 
 def signup(request):
+    return render(request=request, template_name='signup/signup.html')
+
+
+def signup_patient(request):
+    print(request.GET)
+    print(request.POST)
     if request.method == 'POST':
-        userform = UserSignUpForm(request.POST)
-        if userform.is_valid():
+        print(request.POST)
+        userform = UserSignUpForm(request.POST, prefix='userform')
+        patientform = PatientSignupForm(request.POST, prefix='patientform')
+        if userform.is_valid() and patientform.is_valid():
             user = userform.save()
+            user.role = User.PATIENT
+            user.role = request.POST.get('date_of_birth')
+            patient = patientform.save()
+            patient.user = user
+            patient.save()
             username = userform.cleaned_data.get('username')
             raw_password = userform.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('index')
     else:
-        userform = UserSignUpForm()
-    return render(request=request, template_name='signup/signup_user.html', context={'userform': userform})
-
-
-def signup_patient(request):
-    return render(request=request, template_name='signup/signup.html')
+        userform = UserSignUpForm(prefix='userform')
+        patientform = PatientSignupForm(prefix='patientform')
+    return render(request=request, template_name='signup/signup_patient.html',
+                  context={'userform': userform, 'patientform': patientform})
 
 
 def signup_doctor(request):
-    return render(request=request, template_name='signup/signup.html')
+    return render(request=request, template_name='signup/signup_patient.html')
 
 
 def signup_hospital(request):
-    return render(request=request, template_name='signup/signup.html')
+    return render(request=request, template_name='signup/signup_patient.html')
 
 
 def changeCalendar(request):
     Doc_data=DaySchedule.objects.filter(doctor=User.objects.get(id=id))
     return render(request, 'calender.html',{'doctor_data': Doc_data})
 
-class RoleViewSet(viewsets.ModelViewSet):
-    queryset = Role.objects.all()
-    serializer_class = RoleSerializer
+#--change_madeclass RoleViewSet(viewsets.ModelViewSet):
+    #--change_made queryset = Role.objects.all()
+#--change_made serializer_class = RoleSerializer
+# class RoleViewSet(viewsets.ModelViewSet):
+#     queryset = Role.objects.all()
+#     serializer_class = RoleSerializer
 
 
 class AddressViewSet(viewsets.ModelViewSet):
@@ -149,3 +169,16 @@ class DayScheduleViewSet(viewsets.ModelViewSet):
 class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+
+
+def testUI(request):
+    if request.method == 'POST':
+        user = request.user
+        print(request.POST)
+        print(request.POST.get('dob'))
+        print(user.date_of_birth)
+        user.date_of_birth = request.POST.get('dob')
+        user.save()
+        print(user)
+        print(user.date_of_birth)
+    return render(request=request, template_name='testUI.html')

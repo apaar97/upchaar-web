@@ -11,7 +11,6 @@ urlpatterns = [
     re_path(r'^$', views.index, name='index'),
     path('', include('django.contrib.auth.urls')),
     path('', include('core.urls')),
-    path('testUI/', views.testUI, name='testUI'),
 ]
 
 if settings.DEBUG:

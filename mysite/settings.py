@@ -25,7 +25,15 @@ SECRET_KEY = 'i&iy)n2&j37#qoad3qbx=m_(ikg11t*&hoy2vmvzqvq%u(ek+('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'upchaar.pythonanywhere.com']
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'anchal0997@gmail.com'
+EMAIL_HOST_PASSWORD = 'anchal@97'
+SENDGRID_API_KEY='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'
+
+
 
 
 # Application definition
@@ -129,6 +137,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'core.User'
 
