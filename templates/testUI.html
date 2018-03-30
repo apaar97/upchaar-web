@@ -2,23 +2,23 @@
 {% load staticfiles %}
 
 {% block custom_style %}
-    <script>
-        $(document).ready(function(){
-            $('#calendar').fullCalendar({
 
-            })
-        });
-    </script>
 {% endblock %}
 
 {% block main %}
 
     <div class="container">
-        <div id='calendar'></div>
+        <!--<div id='calendar'></div>-->
+        <div class="calendar"></div>
     </div>
 
 {% endblock %}
 
 {% block custom_script %}
-
+    <!--<script>-->
+        <!--$(document).ready(function(){-->
+            <!--$('#calendar').fullCalendar();-->
+        <!--});-->
+    <!--</script>-->
+    <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
 {% endblock %}

@@ -3,32 +3,12 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
 
-# class Role(models.Model):
-#     PATIENT = 1
-#     DOCTOR = 2
-#     HOSPITAL = 3
-#     ADMIN = 4
-#     ROLE_CHOICES = (
-#         (PATIENT, 'Patient'),
-#         (DOCTOR, 'Doctor'),
-#         (HOSPITAL, 'Hospital'),
-#         (ADMIN, 'Admin'),
-#     )
-#     id = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, primary_key=True)
-#
-#     def __str__(self):
-#         return self.get_id_display()
-
-
 class Address(models.Model):
     street = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     pincode = models.IntegerField()
-
-    class Meta:
-        unique_together = (('street', 'city', 'state', 'country', 'pincode'),)
 
 
 class User(AbstractUser):
