@@ -106,11 +106,23 @@ def dashboard(request):
         return render(request=request, template_name='dashboard/dashboard_hospital.html')
 
 
+def dashboard_doctor(request):
+    return render(request=request, template_name='dashboard/dashboard_doctor.html')
+
+
+def dashboard_hospital(request):
+    return render(request=request, template_name='dashboard/dashboard_hospital.html')
+
+
 def book_appointment(request):
     return render(request=request, template_name='book_appointment_map.html')
 
 
 def filter_appointment(request):
+    return render(request=request, template_name='filter_appointment.html')
+
+
+def calendar_appointment(request):
     return render(request=request, template_name='filter_appointment.html')
 
 
