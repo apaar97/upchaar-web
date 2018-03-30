@@ -12,6 +12,7 @@ router.register(r'patients', views.PatientViewSet)
 router.register(r'hospitals', views.HospitalViewSet)
 router.register(r'dayschedule', views.DayScheduleViewSet)
 router.register(r'appointment', views.AppointmentViewSet)
+router.register(r'notifications', views.NotificationViewSet)
 
 urlpatterns = [
     path('testUI/', views.testUI, name='testUI'),
@@ -31,4 +32,5 @@ urlpatterns = [
     path('api/login/', views.api_login, name='api_login'),
     path('api/logout/', views.api_logout, name='api_logout'),
     path('api/auth-token/', views.get_auth_token, name='api_auth_token'),
+    path('api/send-notification/', views.send_notification, name='api_send_notification'),
 ]

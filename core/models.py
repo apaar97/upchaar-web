@@ -37,7 +37,7 @@ class Contact(models.Model):
 
 
 class Department(models.Model):
-    department_name = models.CharField(max_length=50)
+    department_name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.department_name
@@ -45,7 +45,7 @@ class Department(models.Model):
 
 class Doctor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    department = models.ManyToManyField(Department)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     education = models.CharField(max_length=500)
     time_slot = models.DurationField()
 
@@ -64,6 +64,8 @@ class Hospital(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     hospital_name = models.CharField(max_length=100)
     no_of_beds = models.IntegerField()
+    latitude = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    longitude = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         return self.hospital_name
@@ -109,3 +111,8 @@ class Appointment(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE)
+
+
+class Notification(models.Model):
+    user_receiver = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.CharField(max_length=1000)

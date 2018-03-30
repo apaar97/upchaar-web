@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import login, authenticate
 from django.core import serializers as django_serializers
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django import forms
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, detail_route, list_route
@@ -9,9 +9,12 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_401_UNAUTHORIZED, HTTP_200_OK
 from rest_framework.authtoken.models import Token
 from django.shortcuts import render
-from .models import User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
+from .models import User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment, Notification
 from .serializers import *
 from .forms import UserSignUpForm, DoctorSignupForm, HospitalSignupForm
+import nexmo
+
+client = nexmo.Client(key='e43bbd7d', secret='w7mD1e7IoJCNOu3U')
 
 
 @api_view(['POST'])
@@ -63,6 +66,22 @@ def get_auth_token(request):
         return Response({'error': 'Invalid Request'}, status=HTTP_401_UNAUTHORIZED)
 
     return Response({'id': id, 'token': auth_token.key}, status=HTTP_200_OK)
+
+
+@api_view(['POST'])
+def send_notification(request, user=None):
+    phone = request.data.get('phone')
+    message = request.data.get('message')
+    user_id = request.data.get('user_id')
+    user = get_object_or_404(User, id=user_id)
+    notification = Notification(user=user, message=message)
+    notification.save()
+    client.send_message({
+        'from': 'UPCHAAR',
+        'to': phone,
+        'text': message,
+    })
+    return Response({'message': 'Success'})
 
 
 def signup(request):
@@ -170,7 +189,7 @@ def filter_appointment(request):
 
 def calendar_appointment(request):
     dayschedules = django_serializers.serialize('json', DaySchedule.objects.all())
-    return render(request=request, template_name='calendar.html', context={'dayschedules':dayschedules})
+    return render(request=request, template_name='calendar.html', context={'dayschedules': dayschedules})
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -213,6 +232,11 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     serializer_class = AppointmentSerializer
 
 
+class NotificationViewSet(viewsets.ModelViewSet):
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer
+
+
 def testUI(request):
     users = django_serializers.serialize('json', User.objects.all())
     contacts = django_serializers.serialize('json', Contact.objects.all())
@@ -221,9 +245,9 @@ def testUI(request):
     patients = django_serializers.serialize('json', Patient.objects.all())
     hospitals = django_serializers.serialize('json', Hospital.objects.all())
     return render(request=request, template_name='testUI.html',
-                  context={'users':users,
-                           'contacts':contacts,
-                           'departments':departments,
-                           'doctors':doctors,
-                           'patients':patients,
-                           'hospitals':hospitals,})
+                  context={'users': users,
+                           'contacts': contacts,
+                           'departments': departments,
+                           'doctors': doctors,
+                           'patients': patients,
+                           'hospitals': hospitals, })

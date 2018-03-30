@@ -1,7 +1,7 @@
 from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from .models import User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
+from .models import User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment, Notification
 
 
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
@@ -43,7 +43,6 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
 class DoctorSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     department = serializers.SlugRelatedField(
-        many=True,
         queryset=Department.objects.all(),
         slug_field='department_name'
     )
@@ -66,16 +65,32 @@ class HospitalSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Hospital
-        fields = ('url', 'user',)
+        fields = ('url', 'user', 'hospital_name', 'no_of_beds', 'latitude', 'longitude')
 
 
 class DayScheduleSerializer(serializers.HyperlinkedModelSerializer):
+    doctor = serializers.PrimaryKeyRelatedField(queryset=Doctor.objects.all())
+    hospital = serializers.PrimaryKeyRelatedField(queryset=Hospital.objects.all())
+
     class Meta:
         model = DaySchedule
-        fields = '__all__'
+        fields = ('url', 'id', 'doctor', 'hospital', 'day', 'time_slot_from', 'time_slot_to')
 
 
 class AppointmentSerializer(serializers.HyperlinkedModelSerializer):
+    patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
+    doctor = serializers.PrimaryKeyRelatedField(queryset=Doctor.objects.all())
+    hospital = serializers.PrimaryKeyRelatedField(queryset=Hospital.objects.all())
+
     class Meta:
         model = Appointment
-        fields = '__all__'
+        fields = ('url', 'id', 'patient', 'doctor', 'hospital', 'appointment_date', 'time_slot_from',
+                  'status', 'token_no')
+
+
+class NotificationSerializer(serializers.HyperlinkedModelSerializer):
+    user_receiver = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), many=True)
+
+    class Meta:
+        model = Notification
+        fields = ('url', 'id', 'user_receiver', 'message')
