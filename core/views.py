@@ -97,8 +97,21 @@ def signup_hospital(request):
     return render(request=request, template_name='signup/signup_patient.html')
 
 
-def calender(request):
-    return render(request=request, template_name='calender.html')
+def dashboard(request):
+    if request.user.role == User.PATIENT:
+        return render(request=request, template_name='dashboard/dashboard_patient.html')
+    elif request.user.role == User.DOCTOR:
+        return render(request=request, template_name='dashboard/dashboard_doctor.html')
+    else:
+        return render(request=request, template_name='dashboard/dashboard_hospital.html')
+
+
+def book_appointment(request):
+    return render(request=request, template_name='book_appointment_map.html')
+
+
+def filter_appointment(request):
+    return render(request=request, template_name='filter_appointment.html')
 
 
 class AddressViewSet(viewsets.ModelViewSet):

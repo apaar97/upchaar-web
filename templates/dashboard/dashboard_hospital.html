@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block custom_title %}
+Dashboard Hospital
+{% endblock %}
+{% block head_block %}
+
+
+{% endblock %}
+
+
+{% block main %}
+
+<div class="container row">
+    <div class="section">
+        <h5>Hospital Dashboard</h5>
+        <div class="divider"></div>
+    </div>
+    <div class="col s12 m6 l6 ">
+        <div class="card-panel waves-effect red lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+                <div class="col s4">
+                    <img src="https://n6-img-fp.akamaized.net/free-icon/calendar-and-clock_318-81674.jpg?size=338&ext=jpg"
+                         alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s8">
+                    <div class="black-text">
+                        <h5>APPOINTMENT DEATILS</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m6 l6 " style="padding-bottom:10%">
+        <div class="card-panel teal waves-effect lighten-5 z-depth-1" style="padding:6%">
+            <div class="row valign-wrapper">
+                <div class="col s4">
+                    <img src="data:image/png;base64,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"
+                         alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s8">
+                    <div class="black-text">
+                        <h5>PERIODIC SCHEDULE</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block custom_script %}
+
+
+{% endblock %}

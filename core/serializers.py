@@ -22,7 +22,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     username = serializers.CharField(validators=[UniqueValidator(queryset=User.objects.all())])
     email = serializers.EmailField(required=True)
     password = serializers.CharField(min_length=8, style={'input_type': 'password'})
-    address = AddressSerializer()
+    # address = AddressSerializer()
     contacts = serializers.SlugRelatedField(
         many=True,
         read_only=True,
@@ -32,7 +32,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'id', 'username', 'email', 'first_name', 'last_name', 'password', 'gender', 'date_of_birth',
-                  'role', 'address', 'contacts')
+                  'role', 'contacts')
         write_only_fields = ('password',)
         read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined',)
 
