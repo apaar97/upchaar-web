@@ -1,17 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 from django.conf import settings
-
-
-class Address(models.Model):
-    street = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
-    pincode = models.IntegerField()
-
-    def __str__(self):
-        return ','.join((self.street, self.city, self.state, self.country, str(self.pincode)))
 
 
 class User(AbstractUser):
@@ -33,7 +23,6 @@ class User(AbstractUser):
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    address = models.OneToOneField(Address, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.username
@@ -41,7 +30,7 @@ class User(AbstractUser):
 
 class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='contacts')
-    contact_no = models.IntegerField()
+    contact_no = models.IntegerField(unique=True)
 
     def __str__(self):
         return self.contact_no
@@ -49,7 +38,6 @@ class Contact(models.Model):
 
 class Department(models.Model):
     department_name = models.CharField(max_length=50)
-    department_desc = models.CharField(max_length=500)
 
     def __str__(self):
         return self.department_name
@@ -67,7 +55,6 @@ class Doctor(models.Model):
 
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    medical_history = models.BooleanField()
 
     def __str__(self):
         return self.user.get_full_name()

@@ -2,18 +2,16 @@ from django.conf import settings
 from django.contrib.auth import login, authenticate
 from django.core import serializers as django_serializers
 from django.shortcuts import render, redirect, reverse
+from django import forms
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, detail_route, list_route
 from rest_framework.response import Response
 from rest_framework.status import HTTP_401_UNAUTHORIZED, HTTP_200_OK
 from rest_framework.authtoken.models import Token
 from django.shortcuts import render
-from .models import (Address, User, Contact, Department, Doctor, Patient, Hospital, DaySchedule,
-                     Appointment)
+from .models import User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
 from .serializers import *
-from .forms import UserSignUpForm
-from .serializers import *
-from .forms import UserSignUpForm, PatientSignupForm
+from .forms import UserSignUpForm, DoctorSignupForm, HospitalSignupForm
 
 
 @api_view(['POST'])
@@ -74,11 +72,14 @@ def signup(request):
 def signup_patient(request):
     if request.method == 'POST':
         userform = UserSignUpForm(request.POST, prefix='userform')
+        # patientform = PatientSignupForm(request.POST, prefix='patientform')
         if userform.is_valid():
             user = userform.save()
             user.role = User.PATIENT
             user.date_of_birth = request.POST.get('date_of_birth')
             user.save()
+            patient = Patient(user=user)
+            patient.save()
             username = userform.cleaned_data.get('username')
             raw_password = userform.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
@@ -86,15 +87,60 @@ def signup_patient(request):
             return redirect('index')
     else:
         userform = UserSignUpForm(prefix='userform')
+        # patientform = PatientSignupForm(request.POST, prefix='patientform')
     return render(request=request, template_name='signup/signup_patient.html',
                   context={'userform': userform})
 
+
 def signup_doctor(request):
-    return render(request=request, template_name='signup/signup_patient.html')
+    if request.method == 'POST':
+        userform = UserSignUpForm(request.POST, prefix='userform')
+        doctorform = DoctorSignupForm(request.POST, prefix='doctorform')
+        if userform.is_valid() and doctorform.is_valid():
+            user = userform.save()
+            user.role = User.DOCTOR
+            user.date_of_birth = request.POST.get('date_of_birth')
+            user.save()
+            doctor = doctorform.save()
+            doctor.user = user
+            doctor.save()
+            username = userform.cleaned_data.get('username')
+            raw_password = userform.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        userform = UserSignUpForm(prefix='userform')
+        doctorform = DoctorSignupForm(request.POST, prefix='doctorform')
+    return render(request=request, template_name='signup/signup_doctor.html',
+                  context={'userform': userform, 'doctorform': doctorform})
 
 
 def signup_hospital(request):
-    return render(request=request, template_name='signup/signup_patient.html')
+    if request.method == 'POST':
+        userform = UserSignUpForm(request.POST, prefix='userform')
+        userform.fields['first_name'].widget = forms.HiddenInput()
+        userform.fields['last_name'].widget = forms.HiddenInput()
+        hospitalform = HospitalSignupForm(request.POST, prefix='hospitalform')
+        if userform.is_valid() and hospitalform.is_valid():
+            user = userform.save()
+            user.role = User.HOSPITAL
+            user.save()
+            hospital = hospitalform.save()
+            hospital.user = user
+            hospital.save()
+            username = userform.cleaned_data.get('username')
+            raw_password = userform.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        userform = UserSignUpForm(prefix='userform')
+        userform.fields['first_name'].widget = forms.HiddenInput()
+        userform.fields['last_name'].widget = forms.HiddenInput()
+        hospitalform = HospitalSignupForm(request.POST, prefix='hospitalform')
+    return render(request=request, template_name='signup/signup_hospital.html',
+                  context={'userform': userform, 'hospitalform': hospitalform})
 
 
 def dashboard(request):
@@ -123,12 +169,8 @@ def filter_appointment(request):
 
 
 def calendar_appointment(request):
-    return render(request=request, template_name='calendar.html')
-
-
-class AddressViewSet(viewsets.ModelViewSet):
-    queryset = Address.objects.all()
-    serializer_class = AddressSerializer
+    dayschedules = django_serializers.serialize('json', DaySchedule.objects.all())
+    return render(request=request, template_name='calendar.html', context={'dayschedules':dayschedules})
 
 
 class UserViewSet(viewsets.ModelViewSet):

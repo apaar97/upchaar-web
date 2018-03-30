@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Address, User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
+from .models import User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
 
-admin.site.register(Address)
 admin.site.register(User)
 admin.site.register(Contact)
 admin.site.register(Department)

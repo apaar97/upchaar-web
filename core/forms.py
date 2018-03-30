@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.forms.utils import ValidationError
-from .models import Address, User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
+from .models import User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
 
 
 class UserSignUpForm(UserCreationForm):
@@ -26,23 +26,23 @@ class UserSignUpForm(UserCreationForm):
         return email
 
 
-class PatientSignupForm(forms.ModelForm):
-    class Meta:
-        model = Patient
-        fields = ('medical_history',)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in iter(self.fields):
-            self.fields[field].widget.attrs.update({
-                'class': 'validate'
-            })
+# class PatientSignupForm(forms.ModelForm):
+#     class Meta:
+#         model = Patient
+#         fields = ('medical_history',)
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         for field in iter(self.fields):
+#             self.fields[field].widget.attrs.update({
+#                 'class': 'validate'
+#             })
 
 
 class DoctorSignupForm(forms.ModelForm):
     class Meta:
         model = Doctor
-        fields = ('department', 'education', 'time_slot',)
+        fields = ('department', 'education',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

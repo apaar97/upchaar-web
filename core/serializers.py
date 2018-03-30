@@ -1,13 +1,7 @@
 from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from .models import Address, User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
-
-
-class AddressSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Address
-        fields = ('url', 'id', 'street', 'city', 'state', 'country', 'pincode',)
+from .models import User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
 
 
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
@@ -22,7 +16,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     username = serializers.CharField(validators=[UniqueValidator(queryset=User.objects.all())])
     email = serializers.EmailField(required=True)
     password = serializers.CharField(min_length=8, style={'input_type': 'password'})
-    # address = AddressSerializer()
     contacts = serializers.SlugRelatedField(
         many=True,
         read_only=True,
@@ -37,23 +30,21 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined',)
 
     def create(self, validated_data):
-        address_data = validated_data.pop('address')
         user = User.objects.create_user(**validated_data)
-        Address.objects.create(user=user, **address_data)
         return user
 
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Department
-        fields = ('url', 'id', 'department_name', 'department_desc',)
+        fields = ('url', 'id', 'department_name',)
 
 
 class DoctorSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     department = serializers.SlugRelatedField(
         many=True,
-        read_only=True,
+        queryset=Department.objects.all(),
         slug_field='department_name'
     )
 

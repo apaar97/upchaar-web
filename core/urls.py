@@ -4,7 +4,6 @@ from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
 
 router = routers.DefaultRouter()
-router.register(r'address', views.AddressViewSet)
 router.register(r'users', views.UserViewSet)
 router.register(r'contacts', views.ContactViewSet)
 router.register(r'departments', views.DepartmentViewSet)
