@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block custom_title %}
+Calendar
+{% endblock %}
+
+{% block custom_style %}
+    <link rel='stylesheet' type="text/css" href="{% static 'fullcalendar/fullcalendar.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class='calendar'>
+        </div>
+        <div id="remote_container"></div>
+    </div>
+    <div id="new_event" style="background:'pink';height:100px;display:none">
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+        <!-- Modal Structure -->
+        <div class="modal_render">
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Modal Header</h4>
+                    <p>A bunch of text</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_script %}
+
+<script>
+
+     $('.modal').modal();
+
+
+</script>
+
+<script src="{% static 'fullcalendar/lib/moment.min.js' %} "></script>
+<script src="{% static 'fullcalendar/fullcalendar.js' %} "></script>
+<script src="{% static 'js/calendar.js' %} "></script>
+
+{% endblock %}

@@ -23,9 +23,9 @@ $(document).ready(function() {
         });
     })
     $('.calendar').fullCalendar('renderEvent', {id:1 , title: 'New event', start:  "Thu Mar 15 2018 16:04:40 GMT+0530", end:"Thu Mar 15 2018 19:04:40 GMT+0530", dow:[1,4],className : 'casual_leave' }, true);
-//    $('.calendar').fullCalendar('renderEvent', {id:2 , title: '2nd event', start: "Thu Mar 15 2018 19:04:40 GMT+0530", end: "Thu Mar 29 2018 19:04:40 GMT+0530" }, true);
-//    $('.calendar').fullCalendar('renderEvent', {id:3 , title: '3rd event', start: "Thu Mar 22 2018 19:04:40 GMT+0530", end: "Thu Mar 29 2018 19:04:40 GMT+0530" }, true);
-//    $('.calendar').fullCalendar('renderEvent', {id:4 , title:"Monday",start: '2017-02-28',dow:[1] }, true);
+    $('.calendar').fullCalendar('renderEvent', {id:2 , title: '2nd event', start: "Thu Mar 15 2018 19:04:40 GMT+0530", end: "Thu Mar 29 2018 19:04:40 GMT+0530" }, true);
+    $('.calendar').fullCalendar('renderEvent', {id:3 , title: '3rd event', start: "Thu Mar 22 2018 19:04:40 GMT+0530", end: "Thu Mar 29 2018 19:04:40 GMT+0530" }, true);
+    $('.calendar').fullCalendar('renderEvent', {id:4 , title:"Monday",start: '2017-02-28',dow:[1] }, true);
     $('.casual_leave').css('background-color','"pink"');
 })
 

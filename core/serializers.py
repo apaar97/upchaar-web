@@ -67,7 +67,7 @@ class PatientSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Patient
-        fields = ('url', 'user', 'patient_desc',)
+        fields = ('url', 'user',)
 
 
 class HospitalSerializer(serializers.HyperlinkedModelSerializer):
@@ -75,7 +75,7 @@ class HospitalSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Hospital
-        fields = ('url', 'user', 'hospital_desc',)
+        fields = ('url', 'user',)
 
 
 class DayScheduleSerializer(serializers.HyperlinkedModelSerializer):

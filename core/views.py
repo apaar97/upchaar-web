@@ -123,7 +123,7 @@ def filter_appointment(request):
 
 
 def calendar_appointment(request):
-    return render(request=request, template_name='filter_appointment.html')
+    return render(request=request, template_name='calendar.html')
 
 
 class AddressViewSet(viewsets.ModelViewSet):

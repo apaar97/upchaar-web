@@ -25,6 +25,7 @@ urlpatterns = [
     path('dashboard/hospital', views.dashboard_hospital, name='dashboard_hospital'),
     path('appointment/book', views.book_appointment, name='book_appointment'),
     path('appointment/filter', views.filter_appointment, name='filter_appointment'),
+    path('appointment/calendar', views.calendar_appointment, name='calendar_appointment'),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/docs/', include_docs_urls(title='UPCHAAR API', public=False)),
