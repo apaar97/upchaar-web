@@ -66,7 +66,7 @@ class Hospital(models.Model):
     no_of_beds = models.IntegerField()
 
     def __str__(self):
-        return self.user.get_full_name()
+        return self.hospital_name
 
 
 class DaySchedule(models.Model):
@@ -91,9 +91,6 @@ class DaySchedule(models.Model):
     day = models.PositiveSmallIntegerField(choices=DAYS)
     time_slot_from = models.TimeField()
     time_slot_to = models.TimeField()
-
-    def __str__(self):
-        return ' '.join(self.doctor, self.hospital, self.day, self.time_slot_from, self.time_slot_to)
 
 
 class Appointment(models.Model):
