@@ -1,7 +1,7 @@
 from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from .models import Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule, Appointment
+from .models import Address, User, Contact, Department, Doctor, Patient, Hospital, DaySchedule, Appointment
 
 
 class AddressSerializer(serializers.HyperlinkedModelSerializer):
@@ -27,7 +27,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         many=True,
         read_only=True,
         slug_field='contact_no'
-     )
+    )
 
     class Meta:
         model = User
@@ -49,28 +49,17 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'id', 'department_name', 'department_desc',)
 
 
-class EducationSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Education
-        fields = ('url', 'id', 'education_desc',)
-
-
 class DoctorSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-    department = DepartmentSerializer(many=True)
-    education = EducationSerializer()
+    department = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='department_name'
+    )
 
     class Meta:
         model = Doctor
         fields = ('url', 'user', 'department', 'education', 'time_slot',)
-
-    def create(self, validated_data):
-        department_data = validated_data.pop('department')
-        education_data = validated_data.pop('education')
-        doctor = Doctor.objects.create_user(**validated_data)
-        Department.objects.create(**department_data)
-        Education.objects.create(**education_data)
-        return doctor
 
 
 class PatientSerializer(serializers.HyperlinkedModelSerializer):

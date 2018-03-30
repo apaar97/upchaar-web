@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import login, authenticate
+from django.core import serializers as django_serializers
 from django.shortcuts import render, redirect, reverse
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, detail_route, list_route
@@ -7,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_401_UNAUTHORIZED, HTTP_200_OK
 from rest_framework.authtoken.models import Token
 from django.shortcuts import render
-from .models import (Address, User, Contact, Department, Education, Doctor, Patient, Hospital, DaySchedule,
+from .models import (Address, User, Contact, Department, Doctor, Patient, Hospital, DaySchedule,
                      Appointment)
 from .serializers import *
 from .forms import UserSignUpForm
@@ -71,20 +72,13 @@ def signup(request):
 
 
 def signup_patient(request):
-    print(request.GET)
-    print(request.POST)
     if request.method == 'POST':
-        print(request.POST)
         userform = UserSignUpForm(request.POST, prefix='userform')
-        patientform = PatientSignupForm(request.POST, prefix='patientform')
-        if userform.is_valid() and patientform.is_valid():
+        if userform.is_valid():
             user = userform.save()
             user.role = User.PATIENT
             user.date_of_birth = request.POST.get('date_of_birth')
             user.save()
-            patient = patientform.save()
-            patient.user = user
-            patient.save()
             username = userform.cleaned_data.get('username')
             raw_password = userform.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
@@ -92,10 +86,8 @@ def signup_patient(request):
             return redirect('index')
     else:
         userform = UserSignUpForm(prefix='userform')
-        patientform = PatientSignupForm(prefix='patientform')
     return render(request=request, template_name='signup/signup_patient.html',
-                  context={'userform': userform, 'patientform': patientform})
-
+                  context={'userform': userform})
 
 def signup_doctor(request):
     return render(request=request, template_name='signup/signup_patient.html')
@@ -124,6 +116,11 @@ class ContactViewSet(viewsets.ModelViewSet):
     serializer_class = ContactSerializer
 
 
+class DepartmentViewSet(viewsets.ModelViewSet):
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
+
+
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
@@ -150,13 +147,16 @@ class AppointmentViewSet(viewsets.ModelViewSet):
 
 
 def testUI(request):
-    if request.method == 'POST':
-        user = request.user
-        print(request.POST)
-        print(request.POST.get('dob'))
-        print(user.date_of_birth)
-        user.date_of_birth = request.POST.get('dob')
-        user.save()
-        print(user)
-        print(user.date_of_birth)
-    return render(request=request, template_name='testUI.html')
+    users = django_serializers.serialize('json', User.objects.all())
+    contacts = django_serializers.serialize('json', Contact.objects.all())
+    departments = django_serializers.serialize('json', Department.objects.all())
+    doctors = django_serializers.serialize('json', Doctor.objects.all())
+    patients = django_serializers.serialize('json', Patient.objects.all())
+    hospitals = django_serializers.serialize('json', Hospital.objects.all())
+    return render(request=request, template_name='testUI.html',
+                  context={'users':users,
+                           'contacts':contacts,
+                           'departments':departments,
+                           'doctors':doctors,
+                           'patients':patients,
+                           'hospitals':hospitals,})

@@ -10,6 +10,9 @@ class Address(models.Model):
     country = models.CharField(max_length=50)
     pincode = models.IntegerField()
 
+    def __str__(self):
+        return ','.join((self.street, self.city, self.state, self.country, str(self.pincode)))
+
 
 class User(AbstractUser):
     PATIENT = 1
@@ -52,14 +55,10 @@ class Department(models.Model):
         return self.department_name
 
 
-class Education(models.Model):
-    education_desc = models.CharField(max_length=500)
-
-
 class Doctor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     department = models.ManyToManyField(Department)
-    education = models.OneToOneField(Education, on_delete=models.CASCADE)
+    education = models.CharField(max_length=500)
     time_slot = models.DurationField()
 
     def __str__(self):
@@ -68,7 +67,7 @@ class Doctor(models.Model):
 
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    patient_desc = models.CharField(max_length=500)
+    medical_history = models.BooleanField()
 
     def __str__(self):
         return self.user.get_full_name()
@@ -76,7 +75,8 @@ class Patient(models.Model):
 
 class Hospital(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    hospital_desc = models.CharField(max_length=500)
+    hospital_name = models.CharField(max_length=100)
+    no_of_beds = models.IntegerField()
 
     def __str__(self):
         return self.user.get_full_name()
@@ -104,6 +104,9 @@ class DaySchedule(models.Model):
     day = models.PositiveSmallIntegerField(choices=DAYS)
     time_slot_from = models.TimeField()
     time_slot_to = models.TimeField()
+
+    def __str__(self):
+        return ' '.join(self.doctor, self.hospital, self.day, self.time_slot_from, self.time_slot_to)
 
 
 class Appointment(models.Model):

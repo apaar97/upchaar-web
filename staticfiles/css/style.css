@@ -126,3 +126,21 @@ img {
   display: block;
 }
 
+.notification-container {
+    position: relative;
+    i {
+        color: #fff;
+    }
+}
+
+.notification-counter {
+    position: absolute;
+    top: 22px;
+    left: 32px;
+
+    background-color: rgba(212, 19, 13, 1);
+    color: #fff;
+    border-radius: 3px;
+    padding: 1px 3px;
+    font: 8px Verdana;
+}

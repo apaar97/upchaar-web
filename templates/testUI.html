@@ -2,23 +2,30 @@
 {% load staticfiles %}
 
 {% block custom_style %}
-
 {% endblock %}
 
 {% block main %}
 
     <div class="container">
-        <!--<div id='calendar'></div>-->
-        <div class="calendar"></div>
+        {{ users }}<br>
+        {{ contacts }}<br>
+        {{ departments }}<br>
     </div>
+
 
 {% endblock %}
 
 {% block custom_script %}
-    <!--<script>-->
-        <!--$(document).ready(function(){-->
-            <!--$('#calendar').fullCalendar();-->
-        <!--});-->
-    <!--</script>-->
-    <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
+
+    <script type="text/javascript">
+        var users = {{ users|safe }};
+        var contacts = {{ contacts|safe }};
+        var departments = {{ departments|safe }};
+        var doctors = {{ doctors|safe }};
+        var hospitals = {{ hospitals|safe }};
+        var patients = {{ patients|safe }};
+        console.log(users);
+    </script>
+    <script type="text/javascript" src="{% static 'js/filter.js' %}"></script>
+
 {% endblock %}

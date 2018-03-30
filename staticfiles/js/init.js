@@ -1,12 +1,14 @@
-(function($){
-  $(function(){
-
+$(document).ready(function(){
+    console.log('init');
     $('.sidenav').sidenav();
     $('.parallax').parallax();
+    $('#notification-sidenav').sidenav({edge:'right'});
     $('.dropdown-trigger').dropdown({
         coverTrigger:false
     });
+    $('.modal').modal();
+});
 
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
-
+function closeNotificationSidenav() {
+    $('#notification-sidenav').sidenav('close');
+};
