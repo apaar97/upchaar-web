@@ -11,6 +11,8 @@ class AddressSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+
     class Meta:
         model = Contact
         fields = ('url', 'id', 'user', 'contact_no',)
