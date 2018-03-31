@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+<div class="container">
+    <ul id="list" class="collection">
+    </ul>
+    {{ appointments }}
+    {{ request.user.id }}
+</div>
+
+{% endblock %}
+
+{% block custom_script %}
+    <script>
+        var appointments = {{ appointments|safe }};
+        var uid = {{ request.user.id }}
+    </script>
+    <script src="{% static 'js/upcoming_appointment.js' %} "></script>
+
+{% endblock %}

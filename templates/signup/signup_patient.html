@@ -35,7 +35,9 @@
 {% block custom_script %}
     <script>
         $(document).ready(function(){
-            $('.datepicker').datepicker();
+            $('.datepicker').datepicker({
+                format:"yyyy-mm-dd",
+            });
         });
     </script>
 {% endblock %}

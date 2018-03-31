@@ -69,7 +69,7 @@ def get_auth_token(request):
 
 
 @api_view(['POST'])
-def send_notification(request, user=None):
+def send_sms(request):
     phone = request.data.get('phone')
     message = request.data.get('message')
     user_id = request.data.get('user_id')
@@ -84,6 +84,16 @@ def send_notification(request, user=None):
     return Response({'message': 'Success'})
 
 
+@api_view(['POST'])
+def send_notification(request):
+    message = request.data.get('message')
+    user_id = request.data.get('user_id')
+    user = get_object_or_404(User, id=user_id)
+    notification = Notification(user=user, message=message)
+    notification.save()
+    return Response({'message': 'Success'})
+
+
 def signup(request):
     return render(request=request, template_name='signup/signup.html')
 
@@ -91,7 +101,6 @@ def signup(request):
 def signup_patient(request):
     if request.method == 'POST':
         userform = UserSignUpForm(request.POST, prefix='userform')
-        # patientform = PatientSignupForm(request.POST, prefix='patientform')
         if userform.is_valid():
             user = userform.save()
             user.role = User.PATIENT
@@ -184,12 +193,41 @@ def book_appointment(request):
 
 
 def filter_appointment(request):
-    return render(request=request, template_name='filter_appointment.html')
+    users = django_serializers.serialize('json', User.objects.all())
+    contacts = django_serializers.serialize('json', Contact.objects.all())
+    departments = django_serializers.serialize('json', Department.objects.all())
+    doctors = django_serializers.serialize('json', Doctor.objects.all())
+    patients = django_serializers.serialize('json', Patient.objects.all())
+    dayschedules = django_serializers.serialize('json', DaySchedule.objects.all())
+    appointments = django_serializers.serialize('json', Appointment.objects.all())
+    hospitals = django_serializers.serialize('json', Hospital.objects.all())
+    return render(request=request, template_name='filter_appointment.html',
+                  context={'users': users,
+                           'contacts': contacts,
+                           'departments': departments,
+                           'doctors': doctors,
+                           'patients': patients,
+                           'hospitals': hospitals,
+                           'daySchedule': dayschedules,
+                           'appointments': appointments
+                           })
 
 
 def calendar_appointment(request):
     dayschedules = django_serializers.serialize('json', DaySchedule.objects.all())
-    return render(request=request, template_name='calendar.html', context={'dayschedules': dayschedules})
+    appointments = django_serializers.serialize('json', Appointment.objects.all())
+    return render(request=request, template_name='calendar.html',
+                  context={'dayschedules': dayschedules, 'appointments':appointments})
+
+
+def upcoming_appointment(request):
+    appointments = django_serializers.serialize('json', Appointment.objects.all())
+    return render(request=request, template_name='upcoming_appointment.html',
+                  context={'appointments': appointments})
+
+
+def faq(request):
+    return render(request=request, template_name='FAQ.html')
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -243,6 +281,7 @@ def testUI(request):
     departments = django_serializers.serialize('json', Department.objects.all())
     doctors = django_serializers.serialize('json', Doctor.objects.all())
     patients = django_serializers.serialize('json', Patient.objects.all())
+    appointments = django_serializers.serialize('json', Appointment.objects.all())
     hospitals = django_serializers.serialize('json', Hospital.objects.all())
     return render(request=request, template_name='testUI.html',
                   context={'users': users,
@@ -250,4 +289,6 @@ def testUI(request):
                            'departments': departments,
                            'doctors': doctors,
                            'patients': patients,
-                           'hospitals': hospitals, })
+                           'hospitals': hospitals,
+                           'appointments':appointments
+                           })

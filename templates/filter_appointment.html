@@ -1,18 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-    {% block custom_title %}
-    Hospitals and Doctors
-    {% endblock %}
-
-
-
-
-    {% block main %}
+{% block main %}
     <div class="row">
         <div class="col s3" style="margin:0; height: 100%;">
             <div class="container">
-
                 <form class="row">
                     <label class="col m12"><h5>FILTER By</h5></label>
                     <div class="input-field col s6">
@@ -21,8 +13,8 @@
                         <label for="fromDate">From Date</label>
                     </div>
                     <div class="input-field col s6">
-                    <input type="text" id="toDate" class="datepicker">
-                    <label for="toDate">To Date</label>
+                        <input type="text" id="toDate" class="datepicker">
+                        <label for="toDate">To Date</label>
                     </div>
 
                     <div class="input-field col s12">
@@ -42,66 +34,51 @@
 
                     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Time Slot &nbsp; &nbsp; v</a>
 
-                  <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">Morning</a></li>
-                    <li><a href="#!">Noon</a></li>
-                     <li><a href="#!">Evening</a></li>
-                  </ul>
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">Morning</a></li>
+                        <li><a href="#!">Noon</a></li>
+                        <li><a href="#!">Evening</a></li>
+                    </ul>
 
-                    <a class="waves-effect waves-light btn" style="margin-top:2%" onclick="getLocation()">Sort By Location</a>
+                    <a class="waves-effect waves-light btn" style="margin-top:2%" onclick="getLocation()">Sort By
+                        Location</a>
                     <p id="demo"></p>
+
+                    <a class="waves-effect waves-light btn" id="filter">Filter</a>
+
 
                 </form>
             </div>
         </div>
         <div class="col s9" style="height:100%">
-            <div class="row">
-                <div class="col s12 m4">
-                    <div class="card" style="height:100%; width: 80%">
-                        <div class="card-image">
-                            <img src="https://mahansms.com/Media/Default/Thumbs/0000/0000062---600.jpg">
-                            <span class="card-title" style="font-size: 200%">Doctor Name</span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red doc" ><i class="material-icons">add</i></a>
-                        </div>
-                        <div class="card-content">
-                          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m4">
-                    <div class="card" style="height:100%; width: 80%">
-                        <div class="card-image">
-                            <img src="https://mahansms.com/Media/Default/Thumbs/0000/0000062---600.jpg">
-                            <span class="card-title" style="font-size: 200%">Doctor Name</span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red doc"><i class="material-icons">add</i></a>
-                        </div>
-                        <div class="card-content">
-                          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m4">
-                    <div class="card" style="height:100%; width: 80%">
-                        <div class="card-image">
-                            <img src="https://mahansms.com/Media/Default/Thumbs/0000/0000062---600.jpg">
-                            <span class="card-title" style="font-size: 200%">Doctor Name</span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red doc"><i class="material-icons">add</i></a>
-                        </div>
-                        <div class="card-content">
-                          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" id="add_cards">
+
             </div>
         </div>
-   </div>
+    </div>
 
+{% endblock %}
 
-    {% endblock %}
+{% block custom_script %}
 
-    {% block custom_script %}
-        <script type="text/javascript" src="{% static 'js/filter.js' %}"></script>
-
-
+    <script type="text/javascript">
+            var users = {{ users|safe }};
+            var contacts = {{ contacts|safe }};
+            var departments = {{ departments|safe }};
+            var doctors = {{ doctors|safe }};
+            var appointments = {{ appointments|safe }};
+            var daySchedule = {{ daySchedule|safe }};
+            var hospitals = {{ hospitals|safe }};
+            var patients = {{ patients|safe }};
+            console.log("daySchedule");
+            console.log(daySchedule);
+            console.log("appointments");
+            console.log(appointments);
+            console.log(doctors);
+            console.log("USERS");
+            console.log(hospitals);
+            console.log(departments);
+    </script>
+    <script type="text/javascript" src="{% static 'js/filter.js' %}"></script>
 
 {% endblock %}
