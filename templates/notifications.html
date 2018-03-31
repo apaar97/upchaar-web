@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="section">
+                <h4 class="grey-text text-darken-2">Notifications</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                {% for notification in unread_notifications %}
+                    <div class="alert">
+                        <span class="closebtn">&times;</span>
+                        {{ notification.message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                {% for notification in read_notifications %}
+                    <div class="alert warning">
+                        <span class="closebtn">&times;</span>
+                        {{ notification.message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript">
+            var close = document.getElementsByClassName("closebtn");
+            var i;
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function(){
+                    var div = this.parentElement;
+                    div.style.opacity = "0";
+                    setTimeout(function(){ div.style.display = "none"; }, 600);
+                }
+            }
+    </script>
+{% endblock %}

@@ -91,4 +91,4 @@ class AppointmentSerializer(serializers.HyperlinkedModelSerializer):
 class NotificationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Notification
-        fields = ('url', 'id', 'user_id', 'message')
+        fields = ('url', 'id', 'user_id', 'message', 'read')

@@ -8,7 +8,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^$', views.index, name='index'),
     path('', include('django.contrib.auth.urls')),
     path('', include('core.urls')),
 ]

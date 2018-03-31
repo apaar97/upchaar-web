@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block notifications %}
+    {% if unread_notifications %}
+        {% for notification in unread_notifications %}
+            <li><a class="subheader" style="text-align:center">{{ notification.message }}</a></li>
+        {% endfor %}
+    {% else %}
+        <li><a class="subheader" style="text-align:center">No notifications to show</a></li>
+    {% endif %}
+{% endblock %}
+
 {% block main %}
 
     <div id="index-banner" class="parallax-container black">

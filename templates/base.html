@@ -87,10 +87,11 @@
             {% if user.is_authenticated %}
                 <ul class="sidenav" id="notification-sidenav" style="padding:20px;">
                     <li onclick="closeNotificationSidenav()"><i class="material-icons right">close</i></li>
-                    <li><h6 align="center">Notifications</h6></li>
+                    <li><a href="{% url 'notifications' %}"><h6 align="center">Notifications</h6></a></li>
                     <li class="divider"></li>
                     <br>
-                    <li><a class="subheader" style="text-align:center">No notifications to show</a></li>
+                    {% block notifications %}
+                    {% endblock %}
                 </ul>
             {% endif %}
 

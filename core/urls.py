@@ -16,6 +16,7 @@ router.register(r'notifications', views.NotificationViewSet)
 
 urlpatterns = [
     path('testUI/', views.testUI, name='testUI'),
+    path('', views.index, name='index'),
     path('signup/', views.signup, name='signup'),
     path('signup/patient', views.signup_patient, name='signup_patient'),
     path('signup/doctor', views.signup_doctor, name='signup_doctor'),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('appointment/filter', views.filter_appointment, name='filter_appointment'),
     path('appointment/calendar', views.calendar_appointment, name='calendar_appointment'),
     path('appointment/upcoming', views.upcoming_appointment, name='upcoming_appointment'),
+    path('notifications', views.notifications, name='notifications'),
     path('faq', views.faq, name='faq'),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),

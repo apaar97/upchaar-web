@@ -90,6 +90,11 @@ def send_notification(request):
     return Response({'message': 'Success'})
 
 
+def index(request):
+    unread_notifications = Notification.objects.filter(read=False)
+    return render(request=request, template_name='index.html', context={'unread_notifications':unread_notifications})
+
+
 def signup(request):
     return render(request=request, template_name='signup/signup.html')
 
@@ -128,6 +133,8 @@ def signup_doctor(request):
             user.save()
             doctor = doctorform.save()
             doctor.user = user
+            doctor.department = request.POST.get('department')
+            doctor.time_slot = 20
             doctor.save()
             username = userform.cleaned_data.get('username')
             raw_password = userform.cleaned_data.get('password1')
@@ -221,6 +228,16 @@ def upcoming_appointment(request):
     appointments = django_serializers.serialize('json', Appointment.objects.all())
     return render(request=request, template_name='upcoming_appointment.html',
                   context={'appointments': appointments})
+
+
+def notifications(request):
+    unread_notifications = Notification.objects.filter(read=False)
+    read_notifications = Notification.objects.filter(read=True)
+    for notification in unread_notifications:
+        notification.read = True
+        notification.save()
+    return render(request=request, template_name='notifications.html',
+                  context={'unread_notifications':unread_notifications, 'read_notifications':read_notifications})
 
 
 def faq(request):

@@ -41,13 +41,15 @@
 {% block custom_script %}
     <script>
         $(document).ready(function(){
-            var departments = {{ departments|safe }}
-            var data_2={};
-            for(var i=0;i<departments.length;i++)
-            {   data_2[departments[i].fields.department_name]=null;
-            }
-            $('#id_department').autocomplete({
-                data: data_2,
+            $('.autocomplete').autocomplete({
+                data: {
+                    {% for department in departments %}
+                        {{ department }} : null,
+                    {% endfor %}
+                },
+            });
+            $('.datepicker').datepicker({
+                format:"yyyy-mm-dd",
             });
         });
     </script>

@@ -44,6 +44,7 @@ class DoctorSignupForm(forms.ModelForm):
         model = Doctor
         fields = ('education',)
 
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in iter(self.fields):

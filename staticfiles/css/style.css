@@ -144,3 +144,33 @@ img {
     padding: 1px 3px;
     font: 8px Verdana;
 }
+
+/*  ------------    Alert Messages  --------  */
+
+.alert {
+    padding: 20px;
+    background-color: #ef5350;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+
+.alert.success {background-color: #4caf50;}
+.alert.info {background-color: #2196F3;}
+.alert.warning {background-color: #ff9800;}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
