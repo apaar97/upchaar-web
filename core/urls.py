@@ -22,6 +22,7 @@ urlpatterns = [
     path('signup/doctor', views.signup_doctor, name='signup_doctor'),
     path('signup/hospital', views.signup_hospital, name='signup_hospital'),
     path('dashboard', views.dashboard, name='dashboard'),
+    path('dashboard/patient', views.dashboard_patient, name='dashboard_patient'),
     path('dashboard/doctor', views.dashboard_doctor, name='dashboard_doctor'),
     path('dashboard/hospital', views.dashboard_hospital, name='dashboard_hospital'),
     path('appointment/book', views.book_appointment, name='book_appointment'),

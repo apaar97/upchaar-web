@@ -177,11 +177,15 @@ def signup_hospital(request):
 
 def dashboard(request):
     if request.user.role == User.PATIENT:
-        return render(request=request, template_name='dashboard/dashboard_patient.html')
+        return dashboard_patient(request)
     elif request.user.role == User.DOCTOR:
-        return render(request=request, template_name='dashboard/dashboard_doctor.html')
+        return dashboard_doctor(request)
     else:
-        return render(request=request, template_name='dashboard/dashboard_hospital.html')
+        return dashboard_hospital(request)
+
+
+def dashboard_patient(request):
+    return render(request=request, template_name='dashboard/dashboard_patient.html')
 
 
 def dashboard_doctor(request):
