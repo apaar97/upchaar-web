@@ -28,6 +28,7 @@ urlpatterns = [
     path('appointment/filter', views.filter_appointment, name='filter_appointment'),
     path('appointment/calendar', views.calendar_appointment, name='calendar_appointment'),
     path('appointment/upcoming', views.upcoming_appointment, name='upcoming_appointment'),
+    path('doctor/leave', views.doctor_leave, name='doctor_leave'),
     path('notifications', views.notifications, name='notifications'),
     path('faq', views.faq, name='faq'),
     path('api/', include(router.urls)),

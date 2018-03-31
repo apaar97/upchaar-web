@@ -230,6 +230,23 @@ def upcoming_appointment(request):
                   context={'appointments': appointments})
 
 
+def doctor_leave(request):
+    if request.method == 'POST':
+        date = request.POST.get('leavedate')
+        doctor = Doctor(user=request.user)
+        appointments = Appointment.objects.filter(appointment_date=date)
+        for appointment in appointments:
+            user = appointment.patient
+            message = 'Your appointment has to be rescheduled due to cancellation by Dr. {}. '.format(doctor)
+            message += 'Alternative recommended option: {}, {} at {}'.format(
+                'Dr. Abhay Mahajan', appointment.Hospital, appointment.date)
+            message += 'To approve/modify your appointment, visit your dashboard'
+            print(message)
+            Notification.objects.create(user_id=user.id, message=message)
+
+    return render(request=request, template_name='doctor_leave.html')
+
+
 def notifications(request):
     unread_notifications = Notification.objects.filter(read=False)
     read_notifications = Notification.objects.filter(read=True)

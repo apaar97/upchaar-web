@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+
+<div class="container">
+    <label style="text-align:center"><h4>Leave Date</h4></label>
+    <div class="divider"></div>
+    <div class="container row">
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="id_leavedate">Date</label>
+                    <input type="text" id="id_leavedate" name="leavedate" class="datepicker">
+                </div>
+            </div>
+            <div class="center-align">
+                <button class="waves-effect waves-light btn" type="submit">Take a Leave</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block custom_script %}
+
+<script>
+        $(document).ready(function(){
+            $('.datepicker').datepicker({
+                format:"yyyy-mm-dd",
+            });
+        });
+
+</script>
+
+
+{% endblock %}
