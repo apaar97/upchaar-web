@@ -114,6 +114,6 @@ class Appointment(models.Model):
 
 
 class Notification(models.Model):
-    user_receiver = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.IntegerField()
     message = models.CharField(max_length=1000)
     read = models.BooleanField(default=False)

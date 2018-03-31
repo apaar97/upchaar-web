@@ -89,8 +89,6 @@ class AppointmentSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class NotificationSerializer(serializers.HyperlinkedModelSerializer):
-    user_receiver = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), many=True)
-
     class Meta:
         model = Notification
-        fields = ('url', 'id', 'user_receiver', 'message')
+        fields = ('url', 'id', 'user_id', 'message')
