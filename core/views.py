@@ -72,10 +72,6 @@ def get_auth_token(request):
 def send_sms(request):
     phone = request.data.get('phone')
     message = request.data.get('message')
-    user_id = request.data.get('user_id')
-    user = get_object_or_404(User, id=user_id)
-    notification = Notification(user=user, message=message)
-    notification.save()
     client.send_message({
         'from': 'UPCHAAR',
         'to': phone,
@@ -121,6 +117,7 @@ def signup_patient(request):
 
 
 def signup_doctor(request):
+    departments = Department.objects.all()
     if request.method == 'POST':
         userform = UserSignUpForm(request.POST, prefix='userform')
         doctorform = DoctorSignupForm(request.POST, prefix='doctorform')
@@ -141,7 +138,7 @@ def signup_doctor(request):
         userform = UserSignUpForm(prefix='userform')
         doctorform = DoctorSignupForm(request.POST, prefix='doctorform')
     return render(request=request, template_name='signup/signup_doctor.html',
-                  context={'userform': userform, 'doctorform': doctorform})
+                  context={'userform': userform, 'doctorform': doctorform, 'departments':departments})
 
 
 def signup_hospital(request):

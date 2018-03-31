@@ -42,7 +42,7 @@ class UserSignUpForm(UserCreationForm):
 class DoctorSignupForm(forms.ModelForm):
     class Meta:
         model = Doctor
-        fields = ('department', 'education',)
+        fields = ('education',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

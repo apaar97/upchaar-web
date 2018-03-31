@@ -12,12 +12,6 @@
                 <form class="col s12" method="post" action="">
                     {% csrf_token %}
                     {% include 'form_snippet.html' with form=userform %}
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="id_date_of_birth">Date of Birth</label>
-                            <input type="text" id="id_date_of_birth" name="date_of_birth" class="datepicker">
-                        </div>
-                    </div>
                     {% include 'form_snippet.html' with form=hospitalform %}
                     <div class="center-align">
                         <button class="btn waves-effect waves-light" type="submit" name="action">Signup</button>
