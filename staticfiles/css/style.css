@@ -174,3 +174,10 @@ img {
 .closebtn:hover {
     color: black;
 }
+
+/*  -----------------------  */
+
+.casual_leave{
+    background-color: #F00;
+    color: #FFF;
+}

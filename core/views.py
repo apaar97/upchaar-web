@@ -232,6 +232,7 @@ def upcoming_appointment(request):
 
 def doctor_leave(request):
     if request.method == 'POST':
+        print('in')
         date = request.POST.get('leavedate')
         doctor = Doctor(user=request.user)
         appointments = Appointment.objects.filter(appointment_date=date)
@@ -243,7 +244,15 @@ def doctor_leave(request):
             message += 'To approve/modify your appointment, visit your dashboard'
             print(message)
             Notification.objects.create(user_id=user.id, message=message)
-
+            phone = 919211277070
+            message = request.data.get('message')
+            client.send_message({
+                'from': 'UPCHAAR',
+                'to': phone,
+                'text': message,
+            })
+        print('done')
+        return redirect(reverse('doctor_leave_after'))
     return render(request=request, template_name='doctor_leave.html')
 
 
@@ -255,6 +264,10 @@ def notifications(request):
         notification.save()
     return render(request=request, template_name='notifications.html',
                   context={'unread_notifications':unread_notifications, 'read_notifications':read_notifications})
+
+
+def doctor_leave_after(request):
+    return render(request=request, template_name='doctor_leave_after.html')
 
 
 def faq(request):
