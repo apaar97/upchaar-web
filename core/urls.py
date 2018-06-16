@@ -33,6 +33,7 @@ urlpatterns = [
     path('doctor/leave/reschedule', views.doctor_leave_after, name='doctor_leave_after'),
     path('notifications', views.notifications, name='notifications'),
     path('faq', views.faq, name='faq'),
+    path('legal', views.legal, name='legal'),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/docs/', include_docs_urls(title='UPCHAAR API', public=False)),

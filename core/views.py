@@ -278,6 +278,10 @@ def faq(request):
     return render(request=request, template_name='FAQ.html')
 
 
+def legal(request):
+    return render(request=request, template_name='legal.html')
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
