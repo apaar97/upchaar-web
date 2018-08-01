@@ -14,7 +14,7 @@ A central portal for Patients, Doctors and Hospitals to manage and provide effic
     * If patient discovers late about the follow-up visit he has to do the entire process of appointment scheduling again to get the appointments done. 
     * Lack of interface to link the current appointment system with the duty roster of the doctors
 
-* About UPCHAAR Web Portal and Android App
+* About UPCHAAR portal
 
     * A appointment management system with provision for follow-up and rescheduling, with provision for SMS and app notifications
     * A reminder system wherein the patients and the doctors will be reminded of their appointments in advance so that the chances of appointment being missed are minimized.
