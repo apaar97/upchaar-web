@@ -1,15 +1,16 @@
 ### Unified Portal for Centrally Handled Application for Appointment Requisition (UPCHAAR)
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
+![Django Version](https://img.shields.io/badge/django%20version-2.0%20%7C%202.1%20%7C%202.2-blue.svg)
 [![Requirements Status](https://requires.io/github/apaar97/UpchaarWeb/requirements.svg?branch=master)](https://requires.io/github/apaar97/UpchaarWeb/requirements/?branch=master)
 [![GitHub issues](https://img.shields.io/github/issues/apaar97/UpchaarWeb.svg)](https://github.com/apaar97/UpchaarWeb/issues)
 [![GitHub forks](https://img.shields.io/github/forks/apaar97/UpchaarWeb.svg)](https://github.com/apaar97/UpchaarWeb/network)
 [![GitHub stars](https://img.shields.io/github/stars/apaar97/UpchaarWeb.svg)](https://github.com/apaar97/UpchaarWeb/stargazers)
 [![GitHub license](https://img.shields.io/github/license/apaar97/UpchaarWeb.svg?color=blue)](https://github.com/apaar97/UpchaarWeb/blob/master/LICENSE)
 
+___
 
-#### Smart India Hackathon 2018 
-#### Ministry of Health and Family welfare 
+#### Smart India Hackathon 2018 | Ministry of Health and Family welfare 
 *Problem Statement: Improving appointment scheduling in the Hospitals*
 
 A central portal for Patients, Doctors and Hospitals to manage and provide efficent healthcare. 
@@ -28,10 +29,4 @@ A central portal for Patients, Doctors and Hospitals to manage and provide effic
     * A reminder system wherein the patients and the doctors will be reminded of their appointments in advance so that the chances of appointment being missed are minimized.
     * Automatic rescheduling in cases of missed or periodic appointments.
     * Includes a provision for emergency requests wherein the user can bypass the system and avail services in critical situations.
-    * Builds more trust among patients about the hospital and would also encourage patients to get timely follow-up visits done to improve their health status. 
-
-* Tech Stack (Web)
-    
-    * Django 2.0 (Python >= 3.3)
-    * DjangoRestFramework - Rest API 
-    * Nexmo SMS Client (https://www.nexmo.com/)   
+    * Builds more trust among patients about the hospital and would also encourage patients to get timely follow-up visits done to improve their health status.  
