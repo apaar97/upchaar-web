@@ -1,4 +1,4 @@
-### Unified Portal for Centrally Handled Application for Appointment Requisition (UPCHAAR)
+## Unified Portal for Centrally Handled Application for Appointment Requisition 
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
 ![Django Version](https://img.shields.io/badge/django%20version-2.0%20%7C%202.1%20%7C%202.2-blue.svg)
@@ -8,9 +8,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/apaar97/UpchaarWeb.svg)](https://github.com/apaar97/UpchaarWeb/stargazers)
 [![GitHub license](https://img.shields.io/github/license/apaar97/UpchaarWeb.svg?color=blue)](https://github.com/apaar97/UpchaarWeb/blob/master/LICENSE)
 
-___
 
-#### Smart India Hackathon 2018 | Ministry of Health and Family welfare 
+### Smart India Hackathon 2018 | Ministry of Health and Family welfare 
 *Problem Statement: Improving appointment scheduling in the Hospitals*
 
 A central portal for Patients, Doctors and Hospitals to manage and provide efficent healthcare. 
