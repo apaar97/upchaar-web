@@ -1,6 +1,6 @@
 asn1crypto==1.3.0
 certifi==2019.11.28
-cffi==1.13.2
+cffi==1.14.0
 chardet==3.0.4
 coreapi==2.3.3
 coreschema==0.0.4
