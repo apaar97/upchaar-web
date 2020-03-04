@@ -14,7 +14,7 @@ Jinja2==2.11.1
 Markdown==3.2.1
 MarkupSafe==1.1.1
 nexmo==2.4.0
-pycparser==2.19
+pycparser==2.20
 PyJWT==1.7.1
 pytz==2019.3
 requests==2.23.0
