@@ -1,7 +1,5 @@
 ## Unified Portal for Centrally Handled Application for Appointment Requisition 
 
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
-![Django Version](https://img.shields.io/badge/django%20version-2.0%20%7C%202.1%20%7C%202.2-blue.svg)
 [![Requirements Status](https://requires.io/github/apaar97/UpchaarWeb/requirements.svg?branch=master)](https://requires.io/github/apaar97/UpchaarWeb/requirements/?branch=master)
 [![GitHub issues](https://img.shields.io/github/issues/apaar97/UpchaarWeb.svg)](https://github.com/apaar97/UpchaarWeb/issues)
 [![GitHub forks](https://img.shields.io/github/forks/apaar97/UpchaarWeb.svg)](https://github.com/apaar97/UpchaarWeb/network)
