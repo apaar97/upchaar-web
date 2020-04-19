@@ -9,7 +9,7 @@ Django==3.0.5
 django-filter==2.2.0
 djangorestframework==3.11.0
 idna==2.9
-itypes==1.1.0
+itypes==1.2.0
 Jinja2==2.11.2
 Markdown==3.2.1
 MarkupSafe==1.1.1
