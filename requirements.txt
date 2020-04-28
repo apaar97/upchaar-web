@@ -16,7 +16,7 @@ MarkupSafe==1.1.1
 nexmo==2.4.0
 pycparser==2.20
 PyJWT==1.7.1
-pytz==2019.3
+pytz==2020.1
 requests==2.23.0
 six==1.14.0
 uritemplate==3.0.1
