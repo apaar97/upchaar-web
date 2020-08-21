@@ -13,7 +13,7 @@ itypes==1.2.0
 Jinja2==2.11.2
 Markdown==3.2.2
 MarkupSafe==1.1.1
-nexmo==2.4.0
+nexmo==2.5.0
 pycparser==2.20
 PyJWT==1.7.1
 pytz==2020.1
