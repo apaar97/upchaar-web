@@ -26,4 +26,6 @@ A central portal for Patients, Doctors and Hospitals to manage and provide effic
     * A reminder system wherein the patients and the doctors will be reminded of their appointments in advance so that the chances of appointment being missed are minimized.
     * Automatic rescheduling in cases of missed or periodic appointments.
     * Includes a provision for emergency requests wherein the user can bypass the system and avail services in critical situations.
-    * Builds more trust among patients about the hospital and would also encourage patients to get timely follow-up visits done to improve their health status.  
+    * Builds more trust among patients about the hospital and would also encourage patients to get timely follow-up visits done to improve their health status.
+
+* Link to UPCHAAR app codebase - https://github.com/jatin270/Upchaar  
