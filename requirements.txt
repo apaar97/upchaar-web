@@ -11,7 +11,7 @@ djangorestframework==3.12.1
 idna==2.10
 itypes==1.2.0
 Jinja2==2.11.2
-Markdown==3.3.1
+Markdown==3.3.2
 MarkupSafe==1.1.1
 nexmo==2.5.2
 pycparser==2.20
