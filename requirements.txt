@@ -17,7 +17,7 @@ nexmo==2.5.2
 pycparser==2.20
 PyJWT==1.7.1
 pytz==2020.4
-requests==2.25.0
+requests==2.25.1
 six==1.15.0
 uritemplate==3.0.1
 urllib3==1.26.2
