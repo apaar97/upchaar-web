@@ -15,7 +15,7 @@ Markdown==3.3.3
 MarkupSafe==1.1.1
 nexmo==2.5.2
 pycparser==2.20
-PyJWT==1.7.1
+PyJWT==2.0.0
 pytz==2020.4
 requests==2.25.1
 six==1.15.0
