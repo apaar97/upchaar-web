@@ -7,7 +7,7 @@ coreschema==0.0.4
 cryptography==3.4.6
 Django==3.1.7
 django-filter==2.4.0
-djangorestframework==3.12.2
+djangorestframework==3.12.3
 idna==3.1
 itypes==1.2.0
 Jinja2==2.11.3
