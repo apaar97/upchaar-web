@@ -12,7 +12,7 @@ idna==3.1
 itypes==1.2.0
 Jinja2==3.0.0
 Markdown==3.3.4
-MarkupSafe==2.0.0
+MarkupSafe==2.0.1
 nexmo==2.5.2
 pycparser==2.20
 PyJWT==2.1.0
