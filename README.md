@@ -9,7 +9,10 @@
 
 Problem statement: Improving appointment scheduling in hospitals
 
-![SIH 2018](https://static.mygov.in/rest/s3fs-public/mygov_15082344779017401.png)
+<p>
+<img src="https://drive.google.com/uc?id=1088fL3q_Qd6xohLk3bL6e2Az45rTSB62" alt="Upchaar Logo">
+<img src="https://static.mygov.in/rest/s3fs-public/mygov_15082344779017401.png" width="250" alt="SIH 2018 Logo">
+</p>
 
 **_A central portal for Patients, Doctors and Hospitals to facilitate and manage appointments to provide efficent healthcare._**
 
@@ -26,6 +29,10 @@ Problem statement: Improving appointment scheduling in hospitals
 - Automatic rescheduling in cases of missed or periodic appointments.
 - Includes a provision for emergency requests wherein the user can bypass the system and avail services in critical situations.
 - Builds more trust among patients about the hospital and would also encourage patients to get timely follow-up visits done to improve their health.
+
+#### Presentation
+
+Final presentation slides can be accessed [here](https://drive.google.com/file/d/1zm-dl0LROrfMA82lhmQadAlhO-yLuuBJ/view?usp=sharing).
 
 #### Codebase
 
